@@ -26,15 +26,13 @@ mopl <- read_csv(
 
 # Problem 1. San Joaquin River Delta
 
-## a. 
+## a. We determined that there is not enough evidence to suggest a difference between the median flooded wetland area across water year classification (wet, above normal, below normal, dry, critical drought). 
 
-## b. 
+## b. A boxplot could be created to highlight the medians and interquartile ranges of the median flooded wetland area across the different water year classifications. On the x-axis would be the different water year classifications and on the y-axis would be the recorded flooded wetland area, including the medians. In addition to the boxplot, the points could be jittered vertically to further show the data. 
 
 ## c. 
 
 ## d. 
-
-
 
 # Problem 2. Data Visualization
 
