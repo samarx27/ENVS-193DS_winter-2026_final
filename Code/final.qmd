@@ -3,7 +3,7 @@ title: "Final for Env S 193DS"
 format: html
 ---
 
-## Set Up
+# Set Up
 ```{r}
 library(tidyverse) #loading in tidyverse
 library(here) #loading in here
@@ -23,4 +23,64 @@ mopl <- read_csv(
   )
 )
 ```
+
+# Problem 1. San Joaquin River Delta
+
+## a. 
+
+## b. 
+
+## c. 
+
+## d. 
+
+
+
+# Problem 2. Data Visualization
+
+## a. 
+
+## b. 
+
+## c. 
+
+## d. 
+
+# Problem 3. Data Analysis 
+
+## a. 
+
+## b. 
+
+## c. 
+
+## d. 
+
+## e. 
+
+## f. 
+
+## g. 
+
+## h. 
+
+## i. 
+
+## j. 
+
+# Problem 4. Affective and Exploratory Visualizations
+
+## a. 
+
+## b. 
+
+## c. 
+
+## d. 
+
+## e. 
+
+## f. 
+
+## g. 
 
