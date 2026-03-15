@@ -3,3 +3,24 @@ title: "Final for Env S 193DS"
 format: html
 ---
 
+## Set Up
+```{r}
+library(tidyverse) #loading in tidyverse
+library(here) #loading in here
+library(janitor) #loading in janitor
+library(readxl) #loading in readxl
+library(ggeffects) #loading in ggeffects
+library(knitr) #loading in knitr
+kelp <- read_csv(
+  here(
+    "Data", 
+    "kelp.csv"
+  ))
+mopl <- read_csv(
+  here(
+    "Data", 
+    "MOPL_nest-site_selection_Duchardt_et_al._2019.csv"
+  )
+)
+```
+
