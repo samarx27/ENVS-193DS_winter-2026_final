@@ -42,38 +42,49 @@ kelp_clean <- kelp |>
   # function 3
 clean_names() |>  #removes underscores and capital letters
   
-  # function 5
-group_by(site, year) |> #grouping by site name and year
-  
   # function 6
-filter(site %in% c("IVEE", "NAPL", "CARP")) |> #filtering by three sites
+filter(site %in% c("IVEE", "NAPL", "CARP")) |>  #filtering by three sites
   
   # function 8
 mutate(site = case_when( #changing site names
   site == "NAPL" ~ "Naples", #changing site NAPL to Naples
   site == "IVEE" ~ "Isla Vista", #changing site IVEE to Isla Vista
-  site == "CARP" ~ "Carpinteria")) |>  #changing site CARP to Capinteria 
-  
-  # function 1
-filter(!(date == "2000-09-22" & transect == "6" & quad == "40"))|> #filtering by the date, transect, and quad number
-  
+  site == "CARP" ~ "Carpinteria")) |> #changing site CARP to Capinteria 
+
   # function 2
 mutate(site = as_factor(site), #converts the site name to a categorical variable
        site = fct_relevel(site,
                                "Naples", "Isla Vista", "Carpinteria")) |> #changes the order of factor levels
-  
-  # function 7
-summarize(mean_fronds = mean(fronds)) |> #creating a column for the mean 
-
+  # function 1
+filter(!(date == "2000-09-22" & transect == "6" & quad == "40"))|> #filtering by the date, transect, and quad number
+    # function 5
+group_by(site, year) |> #grouping by site name and year
+    # function 7
+summarize(mean_fronds = mean(fronds)) |>  #creating a column for the mean 
     # function 4
-ungroup() #ungrouping any prior groupings
+ungroup()   #ungrouping any prior groupings
+
 ```
-
-
 
 ## b. 
 
 ## c. 
+```{r}
+ggplot(data = kelp_clean, 
+       aes(x = year, 
+           y = mean_fronds, 
+           color = site)) +
+  geom_point() +
+  geom_line() +
+  labs(x = "Mean kelp fronds per year", 
+       y = "Year", 
+       title = "Sites vary in mean kelp fronds per year") +
+  scale_color_manual(values = c("Naples" = "cyan4",
+                                "Isla Vista" = "burlywood3", 
+                                "Carpinteria" = "grey")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.6))
+```
 
 ## d. 
 
