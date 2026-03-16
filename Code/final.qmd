@@ -12,6 +12,7 @@ library(janitor) #loading in janitor
 library(readxl) #loading in readxl
 library(ggeffects) #loading in ggeffects
 library(knitr) #loading in knitr
+library(MuMIn) #loading in MuMIn
 kelp <- read_csv(
   here(
     "Data", 
@@ -138,8 +139,18 @@ model2 <- glm(used_bin ~ vo_nest, data = mopl_clean)
 model3 <- glm(used_bin ~ edgedist, data = mopl_clean)
 ```
 
-
 ## e.
+```{r}
+AICc(
+  model0,
+  model1, 
+  model2, 
+  model3
+) |> 
+  arrange(AICc)
+```
+
+The best model as determined by Akaike's Information Criterion (AIC) was the model with only visual obstruction. 
 
 ## f.
 
