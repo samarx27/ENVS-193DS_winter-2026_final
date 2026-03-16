@@ -88,14 +88,16 @@ ggplot(data = kelp_clean, #using kelp_clean df
 ```
 
 ## d. 
-
 Isla Vista had the most variable mean kelp fronds per year because it has the highest peaks overall and the greatest difference in increases and decreases per year (represented by the changes in slope of line between each yearly point). Carpinteria had the least variable mean kelp fronds per year because the line has fairly consistent minimums and maximums (represented by the highest and lowest points). 
 
 # Problem 3. Data Analysis 
 
 ## a. 
+The 1s and 0s represent the presence or absence of different shrub cover across the different habitat uses, where 0 is the absence and 1 is the presence.
 
 ## b. 
+The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site, which is included in the discussion section of the paper. 
+The variable for visual obstruction is a categorical variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in _. 
 
 ## c. 
 
