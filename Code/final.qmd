@@ -98,11 +98,11 @@ Isla Vista had the most variable mean kelp fronds per year because it has the hi
 
 ## a.
 
-The 1s and 0s represent the presence or absence of different shrub cover across the different habitat uses, where 0 is the absence and 1 is the presence.
+The 1s and 0s represent whether the site was used for nesting by Mountain Plovers, where 0 is the absence and 1 is the presence.
 
 ## b.
 
-The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site due to altered vegetation composition, which is included in the methods and discussion section of the paper. The variable for visual obstruction is a categorical variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in discussion section of the paper.
+The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site due to altered vegetation composition, which is included in the methods and discussion section of the paper. The variable for visual obstruction is a continuous variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in discussion section of the paper.
 
 ## c.
 
@@ -113,11 +113,31 @@ The variable for distance to prairie dog colony edge is a continuous variable. T
 | 2 |  | X | only visual obstruction |
 | 3 | X |  | only distance to prairie dog colony edge |
 
+## d.
 ```{r}
+#| message: false
+#| warning: false
+#| include: false
+mopl_clean <- mopl |> 
+  clean_names() |> 
+  mutate(used_bin = case_when(
+    id == "used" ~ 1,
+    id == "available" ~ 0)) |> 
+  select(used_bin, edgedist, vo_nest)
+  
+# model 0: null model
+model0 <- glm(used_bin ~ 1, data = mopl_clean)
 
+# model 1: all predictors
+model1 <- glm(used_bin ~ vo_nest + edgedist, data = mopl_clean)
+
+# model 2: only visual obstruction
+model2 <- glm(used_bin ~ vo_nest, data = mopl_clean)
+
+# model 3: only distance to prairie dog colony edge
+model3 <- glm(used_bin ~ edgedist, data = mopl_clean)
 ```
 
-## d.
 
 ## e.
 
