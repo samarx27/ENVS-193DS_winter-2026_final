@@ -4,6 +4,7 @@ format: html
 ---
 
 # Set Up
+
 ```{r}
 library(tidyverse) #loading in tidyverse
 library(here) #loading in here
@@ -26,17 +27,18 @@ mopl <- read_csv(
 
 # Problem 1. San Joaquin River Delta
 
-## a. We determined that there is not enough evidence to suggest a difference between the median flooded wetland area across water year classification (wet, above normal, below normal, dry, critical drought). 
+## a. We determined that there is not enough evidence to suggest a difference between the median flooded wetland area across water year classification (wet, above normal, below normal, dry, critical drought).
 
-## b. A boxplot could be created to highlight the medians and interquartile ranges of the median flooded wetland area across the different water year classifications. On the x-axis would be the different water year classifications and on the y-axis would be the recorded flooded wetland area, including the medians. In addition to the boxplot, the points could be jittered vertically to further show the data. 
+## b. A boxplot could be created to highlight the medians and interquartile ranges of the median flooded wetland area across the different water year classifications. On the x-axis would be the different water year classifications and on the y-axis would be the recorded flooded wetland area, including the medians. In addition to the boxplot, the points could be jittered vertically to further show the data.
 
-## c. 
+## c.
 
-## d. 
+## d.
 
 # Problem 2. Data Visualization
 
-## a. 
+## a.
+
 ```{r}
 kelp_clean <- kelp |> 
   # function 3
@@ -66,9 +68,10 @@ ungroup()   #ungrouping any prior groupings
 
 ```
 
-## b. 
+## b.
 
-## c. 
+## c.
+
 ```{r}
 ggplot(data = kelp_clean, #using kelp_clean df
        aes(x = year, #year on x axis
@@ -87,48 +90,63 @@ ggplot(data = kelp_clean, #using kelp_clean df
         text = element_text(family = "Futura")) #changing the overall text font 
 ```
 
-## d. 
-Isla Vista had the most variable mean kelp fronds per year because it has the highest peaks overall and the greatest difference in increases and decreases per year (represented by the changes in slope of line between each yearly point). Carpinteria had the least variable mean kelp fronds per year because the line has fairly consistent minimums and maximums (represented by the highest and lowest points). 
+## d.
 
-# Problem 3. Data Analysis 
+Isla Vista had the most variable mean kelp fronds per year because it has the highest peaks overall and the greatest difference in increases and decreases per year (represented by the changes in slope of line between each yearly point). Carpinteria had the least variable mean kelp fronds per year because the line has fairly consistent minimums and maximums (represented by the highest and lowest points).
 
-## a. 
+# Problem 3. Data Analysis
+
+## a.
+
 The 1s and 0s represent the presence or absence of different shrub cover across the different habitat uses, where 0 is the absence and 1 is the presence.
 
-## b. 
-The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site due to altered vegetation composition, which is included in the methods and discussion section of the paper. 
-The variable for visual obstruction is a categorical variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in discussion section of the paper. 
+## b.
 
-## c. 
+The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site due to altered vegetation composition, which is included in the methods and discussion section of the paper. The variable for visual obstruction is a categorical variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in discussion section of the paper.
 
-## d. 
+## c.
 
-## e. 
+| Model number | Distance to prairie dog colony edge | Visual obstruction | Predictors |
+|-------------|:-----------:|:-----------:|:--------------------:|
+| 0 |  |  | no predictors (null model) |
+| 1 | X | X | all predictors (full model) |
+| 2 |  | X | only visual obstruction |
+| 3 | X |  | only distance to prairie dog colony edge |
 
-## f. 
+```{r}
 
-## g. 
+```
 
-## h. 
+## d.
 
-## i. 
+## e.
 
-## j. 
+## f.
+
+## g.
+
+## h.
+
+## i.
+
+## j.
 
 # Problem 4. Affective and Exploratory Visualizations
 
-## a. 
-The visualizations from Homework 2 and Homework 3 are similar in the overall outline of the visualization. They have the same x and y axes and have similar shapes, given that the visualization for Homework 3 is an abstract version of Homework 2. However, the final product for the affective visualization differs in that it displays another variable than the initial visualization it was based on does. The affective visualization combines the two initial visualizations in Homework 2, as it displays the school and non school days, as well as a time series plot. In these visualizations, I see a trend in my wake up times on weekends being later than on week days. This is consistent between all visualizations, as they all display, in some way, wake up times for weekends and school days. In week 9, the primary feedback I got was to add in another variable to my visualization. One idea presented was to add in the time of my first obligation as clouds or something similar. I realized I wouldn't be able to do this because there was such a big contrast between my first obligation and my wake up time. Instead, I added another color to represent when the weekends were to differentiate and highlight the differences in wake up times, which was also my primary predictor variable. 
+## a.
 
-## b. 
+The visualizations from Homework 2 and Homework 3 are similar in the overall outline of the visualization. They have the same x and y axes and have similar shapes, given that the visualization for Homework 3 is an abstract version of Homework 2. However, the final product for the affective visualization differs in that it displays another variable than the initial visualization it was based on does. The affective visualization combines the two initial visualizations in Homework 2, as it displays the school and non school days, as well as a time series plot. In these visualizations, I see a trend in my wake up times on weekends being later than on week days. This is consistent between all visualizations, as they all display, in some way, wake up times for weekends and school days. In week 9, the primary feedback I got was to add in another variable to my visualization. One idea presented was to add in the time of my first obligation as clouds or something similar. I realized I wouldn't be able to do this because there was such a big contrast between my first obligation and my wake up time. Instead, I added another color to represent when the weekends were to differentiate and highlight the differences in wake up times, which was also my primary predictor variable.
 
-## c. 
+## b.
 
-## d. 
+## c.
 
-## e. 
+## d.
 
-## f. 
+## e.
 
-## g. 
-I completed the activity in section. 
+## f.
+
+## g.
+
+I completed the activity in section.
