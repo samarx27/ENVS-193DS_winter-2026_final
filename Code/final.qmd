@@ -6,6 +6,7 @@ format: html
 # Set Up
 
 ```{r}
+#| message: false
 library(tidyverse) #loading in tidyverse
 library(here) #loading in here
 library(janitor) #loading in janitor
@@ -13,6 +14,7 @@ library(readxl) #loading in readxl
 library(ggeffects) #loading in ggeffects
 library(knitr) #loading in knitr
 library(MuMIn) #loading in MuMIn
+library(DHARMa)
 kelp <- read_csv(
   here(
     "Data", 
@@ -153,6 +155,15 @@ AICc(
 The best model as determined by Akaike's Information Criterion (AIC) was the model with only visual obstruction. 
 
 ## f.
+```{r}
+#| fig-height: 6
+#| fig-width: 7
+sim_res <-simulateResiduals(fittedModel = model2)
+  plot(sim_res)  
+  testDispersion(sim_res)
+  testZeroInflation(sim_res)
+  testOutliers(sim_res)
+```
 
 ## g.
 
