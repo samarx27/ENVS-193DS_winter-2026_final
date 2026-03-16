@@ -96,8 +96,8 @@ Isla Vista had the most variable mean kelp fronds per year because it has the hi
 The 1s and 0s represent the presence or absence of different shrub cover across the different habitat uses, where 0 is the absence and 1 is the presence.
 
 ## b. 
-The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site, which is included in the discussion section of the paper. 
-The variable for visual obstruction is a categorical variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in _. 
+The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site due to altered vegetation composition, which is included in the methods and discussion section of the paper. 
+The variable for visual obstruction is a categorical variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in discussion section of the paper. 
 
 ## c. 
 
@@ -131,4 +131,4 @@ The visualizations from Homework 2 and Homework 3 are similar in the overall out
 ## f. 
 
 ## g. 
-
+I completed the activity in section. 
