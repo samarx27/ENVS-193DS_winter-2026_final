@@ -14,7 +14,9 @@ library(readxl) #loading in readxl
 library(ggeffects) #loading in ggeffects
 library(knitr) #loading in knitr
 library(MuMIn) #loading in MuMIn
-library(DHARMa)
+library(DHARMa) #loading in DHARMa
+library(effectsize) #loading in effectsize
+library(dplyr) #loading in dplyr
 kelp <- read_csv(
   here(
     "Data", 
@@ -24,6 +26,12 @@ mopl <- read_csv(
   here(
     "Data", 
     "MOPL_nest-site_selection_Duchardt_et_al._2019.csv"
+  )
+)
+my_data <- read_csv(
+  here(
+    "Data", 
+    "my_data Sheet2.csv"
   )
 )
 ```
@@ -186,8 +194,82 @@ The visualizations from Homework 2 and Homework 3 are similar in the overall out
 A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories. 
 
 ## c.
+# Checking Assumptions
+Normal Distribution: 
+```{r}
+my_data_clean <- my_data |> 
+  clean_names()
+ggplot(data = my_data_clean, 
+       aes(sample = wake_up_time_hrs_min)) + 
+  geom_qq() +
+  geom_qq_line() +
+  facet_wrap(~ school_day_yes_no)
+```
+The distribution does not appear to be normally distributed, but the central limit theorem applies (n>30), so the normality conditions can be relaxed. 
+
+F test of Equal Variances: 
+```{r}
+#doing f-test of equal variances
+var.test(
+  wake_up_time_hrs_min ~ school_day_yes_no, #labeling response variable and grouping variable
+  data = my_data_clean #determining data frame
+)
+```
+The group variances were equal (F-test of equal variances, F(11,23) = 2.11, p = 0.13).
+
+# Running t-test and Calculating effect size
+```{r}
+t.test(
+  wake_up_time_hrs_min ~ school_day_yes_no, #formula: response variable ~ grouping variable
+  data = my_data_clean, #labeling data frame
+  var.equal = TRUE #argument for equal variances
+)
+#calculating effect size
+my_data_separate <- my_data_clean |> 
+  separate(wake_up_time_hrs_min, into = c("hour", "minute", "seconds"), sep = ":", convert = TRUE) |> #altering data to separate minutes and hours
+  mutate(wake_up_time_min = hour * 60 + minute) #creating a new column to have one value to calculate cohen's d 
+
+cohens_d(wake_up_time_min ~ school_day_yes_no, #formula: response variable ~ grouping variable
+  data = my_data_separate, #labeling data frame
+  var.equal = TRUE) #argument for equal variances
+```
+There was a significant difference in mean wake up time between school (n=25) and non school days (n=11) with a large effect size (Student's two sample t-test, t(4.6445) = 34, p<0.001, $\alpha$ = 0.05, Cohen's d = 1.64). 
 
 ## d.
+```{r}
+my_data_summary <- my_data_separate |> # start with the my_data_separate data frame
+  group_by(school_day_yes_no) |> # group by school day
+  summarize(mean = mean(wake_up_time_min), # calculate the mean
+            n = length(date), # count the number of observations
+            df = n - 1, # calculate the degrees of freedom
+            sd = sd(wake_up_time_min), # calculate the standard deviation
+            se = sd/sqrt(n), # calculate the standard error
+            tval = qt(p = 0.05/2, df = df, lower.tail = FALSE), # find the t value
+            margin = tval*se, # calculate the margin of error
+            ci_lower = mean - margin, # calculate the lower bound of the confidence interval
+            ci_higher = mean + margin # calculate the upper bound of the confidence interval
+          ) 
+
+ggplot(data = my_data_summary, # use the summary data frame
+       aes(x = school_day_yes_no, #determining x axis
+           y = mean, #determining y axis
+           color = school_day_yes_no)) + # color the points by day type
+  geom_point(size = 2) + # plot the mean
+  geom_jitter(data = my_data_separate, 
+             aes(x = school_day_yes_no, 
+                 y = wake_up_time_min, 
+                 color = school_day_yes_no), 
+             width = 0,
+             alpha = 0.5, 
+             height = 0.1) +
+  geom_errorbar(aes(ymin = mean - se, # plot the standard error
+                    ymax = mean + se)) + 
+  labs(title = "Mean and Standard Error for Wake up times on school and non school days", #providing title
+       x = "Type", #naming x axis
+       y = "Mean and SE million metric tons production") + #naming y axis
+  scale_color_manual(name = "School Day", values = c("red", "blue")) + #changing legend title and colors
+  theme_minimal() #changing theme to minimal
+```
 
 ## e.
 
