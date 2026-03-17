@@ -254,7 +254,7 @@ ggplot(data = my_data_summary, # use the summary data frame
        aes(x = school_day_yes_no, #determining x axis
            y = mean, #determining y axis
            color = school_day_yes_no)) + # color the points by day type
-  geom_point(size = 2) + # plot the mean
+  geom_point(size = 4) + # plot the mean
   geom_jitter(data = my_data_separate, 
              aes(x = school_day_yes_no, 
                  y = wake_up_time_min, 
@@ -265,13 +265,14 @@ ggplot(data = my_data_summary, # use the summary data frame
   geom_errorbar(aes(ymin = mean - se, # plot the standard error
                     ymax = mean + se)) + 
   labs(title = "Mean and Standard Error for Wake up times on school and non school days", #providing title
-       x = "Type", #naming x axis
-       y = "Mean and SE million metric tons production") + #naming y axis
+       x = "School Day", #naming x axis
+       y = "Wake Up times (mins)") + #naming y axis
   scale_color_manual(name = "School Day", values = c("red", "blue")) + #changing legend title and colors
   theme_minimal() #changing theme to minimal
 ```
 
 ## e.
+**Figure 1.** This figure shows the mean, standard error, and underlying data of wake up times for school and non-school days, where school days are in blue and non-school days are in red. The mean is represented by the large points and the standard error is represented by the bars. The jittered points represent the underlying data.
 
 ## f.
 
