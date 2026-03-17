@@ -1,5 +1,7 @@
 ---
 title: "Final for Env S 193DS"
+author: "Sequoia Marx"
+date: "03/17/2026"
 format: html
 ---
 
@@ -38,11 +40,13 @@ my_data <- read_csv(
 
 # Problem 1. San Joaquin River Delta
 
-## a. 
-We determined that there is not enough evidence to suggest a difference between the median flooded wetland area across water year classification (wet, above normal, below normal, dry, critical drought).
-In part 1, th
+## a.
 
-## b. 
+In part 1, they used a linear regression because they were testing the relationship between a quantitative predictor variable (precipitation) and a quantitative response variable (flooded wetland area). 
+In part 2, because they were testing for the median flooded wetland area difference between more than two groups, they used a Kruskal-Wallis test.
+
+## b.
+
 A boxplot could be created to highlight the medians and interquartile ranges of the median flooded wetland area across the different water year classifications. On the x-axis would be the different water year classifications and on the y-axis would be the recorded flooded wetland area, including the medians. In addition to the boxplot, the points could be jittered vertically to further show the data.
 
 ## c.
@@ -121,13 +125,14 @@ The variable for distance to prairie dog colony edge is a continuous variable. T
 ## c.
 
 | Model number | Distance to prairie dog colony edge | Visual obstruction | Predictors |
-|-------------|:-----------:|:-----------:|:--------------------:|
+|----------------|:--------------:|:--------------:|:----------------------:|
 | 0 |  |  | no predictors (null model) |
 | 1 | X | X | all predictors (full model) |
 | 2 |  | X | only visual obstruction |
 | 3 | X |  | only distance to prairie dog colony edge |
 
 ## d.
+
 ```{r}
 #| message: false
 #| warning: false
@@ -153,6 +158,7 @@ model3 <- glm(used_bin ~ edgedist, data = mopl_clean, family = binomial)
 ```
 
 ## e.
+
 ```{r}
 AICc(
   model0,
@@ -163,9 +169,10 @@ AICc(
   arrange(AICc)
 ```
 
-The best model as determined by Akaike's Information Criterion (AIC) was the model with only visual obstruction. 
+The best model as determined by Akaike's Information Criterion (AIC) was the model with only visual obstruction.
 
 ## f.
+
 ```{r}
 #| fig-height: 6
 #| fig-width: 7
@@ -177,6 +184,7 @@ sim_res <-simulateResiduals(fittedModel = model2)
 ```
 
 ## g.
+
 ```{r}
 model_preds <- ggpredict(
   model2, 
@@ -184,6 +192,7 @@ model_preds <- ggpredict(
 )
 model_preds
 ```
+
 ```{r}
 ggplot(data = model2, 
        aes(x= vo_nest, 
@@ -209,7 +218,6 @@ ggplot(data = model2,
        y = "Presence of Prairie Dog Nesting Site")
 ```
 
-
 ## h.
 
 ## i.
@@ -223,11 +231,15 @@ ggplot(data = model2,
 The visualizations from Homework 2 and Homework 3 are similar in the overall outline of the visualization. They have the same x and y axes and have similar shapes, given that the visualization for Homework 3 is an abstract version of Homework 2. However, the final product for the affective visualization differs in that it displays another variable than the initial visualization it was based on does. The affective visualization combines the two initial visualizations in Homework 2, as it displays the school and non school days, as well as a time series plot. In these visualizations, I see a trend in my wake up times on weekends being later than on week days. This is consistent between all visualizations, as they all display, in some way, wake up times for weekends and school days. In week 9, the primary feedback I got was to add in another variable to my visualization. One idea presented was to add in the time of my first obligation as clouds or something similar. I realized I wouldn't be able to do this because there was such a big contrast between my first obligation and my wake up time. Instead, I added another color to represent when the weekends were to differentiate and highlight the differences in wake up times, which was also my primary predictor variable.
 
 ## b.
-A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories. 
+
+A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories.
 
 ## c.
+
 # Checking Assumptions
-Normal Distribution: 
+
+Normal Distribution:
+
 ```{r}
 my_data_clean <- my_data |> 
   clean_names()
@@ -237,9 +249,11 @@ ggplot(data = my_data_clean,
   geom_qq_line() +
   facet_wrap(~ school_day_yes_no)
 ```
-The distribution does not appear to be normally distributed, but the central limit theorem applies (n>30), so the normality conditions can be relaxed. 
 
-F test of Equal Variances: 
+The distribution does not appear to be normally distributed, but the central limit theorem applies (n>30), so the normality conditions can be relaxed.
+
+F test of Equal Variances:
+
 ```{r}
 #doing f-test of equal variances
 var.test(
@@ -247,9 +261,11 @@ var.test(
   data = my_data_clean #determining data frame
 )
 ```
+
 The group variances were equal (F-test of equal variances, F(11,23) = 2.11, p = 0.13).
 
 # Running t-test and Calculating effect size
+
 ```{r}
 t.test(
   wake_up_time_hrs_min ~ school_day_yes_no, #formula: response variable ~ grouping variable
@@ -267,6 +283,7 @@ cohens_d(wake_up_time_min ~ school_day_yes_no, #formula: response variable ~ gro
 ```
 
 ## d.
+
 ```{r}
 my_data_summary <- my_data_separate |> # start with the my_data_separate data frame
   group_by(school_day_yes_no) |> # group by school day
@@ -303,10 +320,12 @@ ggplot(data = my_data_summary, # use the summary data frame
 ```
 
 ## e.
+
 **Figure 1.** This figure shows the mean, standard error, and underlying data of wake up times for school and non-school days, where school days are in blue and non-school days are in red. The mean is represented by the large points and the standard error is represented by the bars. The jittered points represent the underlying data.
 
 ## f.
-There was a significant difference in mean wake up time between school (n=35) and non school days (n=16) with a large effect size (Student's two sample t-test, t(5.8279) = 49, p<0.001, $\alpha$ = 0.05, Cohen's d = 1.76). 
+
+There was a significant difference in mean wake up time between school (n=35) and non school days (n=16) with a large effect size (Student's two sample t-test, t(5.8279) = 49, p\<0.001, $\alpha$ = 0.05, Cohen's d = 1.76).
 
 ## g.s
 
