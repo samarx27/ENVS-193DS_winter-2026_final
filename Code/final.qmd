@@ -31,7 +31,7 @@ mopl <- read_csv(
 my_data <- read_csv(
   here(
     "Data", 
-    "my_data Sheet2.csv"
+    "my_dataHW2 - Sheet2.csv"
   )
 )
 ```
@@ -233,7 +233,6 @@ cohens_d(wake_up_time_min ~ school_day_yes_no, #formula: response variable ~ gro
   data = my_data_separate, #labeling data frame
   var.equal = TRUE) #argument for equal variances
 ```
-There was a significant difference in mean wake up time between school (n=25) and non school days (n=11) with a large effect size (Student's two sample t-test, t(4.6445) = 34, p<0.001, $\alpha$ = 0.05, Cohen's d = 1.64). 
 
 ## d.
 ```{r}
@@ -275,8 +274,8 @@ ggplot(data = my_data_summary, # use the summary data frame
 **Figure 1.** This figure shows the mean, standard error, and underlying data of wake up times for school and non-school days, where school days are in blue and non-school days are in red. The mean is represented by the large points and the standard error is represented by the bars. The jittered points represent the underlying data.
 
 ## f.
-The differences in mean wake up time between school (n = )and non-school days 
+There was a significant difference in mean wake up time between school (n=35) and non school days (n=16) with a large effect size (Student's two sample t-test, t(5.8279) = 49, p<0.001, $\alpha$ = 0.05, Cohen's d = 1.76). 
 
-## g.
+## g.s
 
 I completed the activity in section.
