@@ -30,9 +30,12 @@ mopl <- read_csv(
 
 # Problem 1. San Joaquin River Delta
 
-## a. We determined that there is not enough evidence to suggest a difference between the median flooded wetland area across water year classification (wet, above normal, below normal, dry, critical drought).
+## a. 
+We determined that there is not enough evidence to suggest a difference between the median flooded wetland area across water year classification (wet, above normal, below normal, dry, critical drought).
+In part 1, th
 
-## b. A boxplot could be created to highlight the medians and interquartile ranges of the median flooded wetland area across the different water year classifications. On the x-axis would be the different water year classifications and on the y-axis would be the recorded flooded wetland area, including the medians. In addition to the boxplot, the points could be jittered vertically to further show the data.
+## b. 
+A boxplot could be created to highlight the medians and interquartile ranges of the median flooded wetland area across the different water year classifications. On the x-axis would be the different water year classifications and on the y-axis would be the recorded flooded wetland area, including the medians. In addition to the boxplot, the points could be jittered vertically to further show the data.
 
 ## c.
 
@@ -180,6 +183,7 @@ sim_res <-simulateResiduals(fittedModel = model2)
 The visualizations from Homework 2 and Homework 3 are similar in the overall outline of the visualization. They have the same x and y axes and have similar shapes, given that the visualization for Homework 3 is an abstract version of Homework 2. However, the final product for the affective visualization differs in that it displays another variable than the initial visualization it was based on does. The affective visualization combines the two initial visualizations in Homework 2, as it displays the school and non school days, as well as a time series plot. In these visualizations, I see a trend in my wake up times on weekends being later than on week days. This is consistent between all visualizations, as they all display, in some way, wake up times for weekends and school days. In week 9, the primary feedback I got was to add in another variable to my visualization. One idea presented was to add in the time of my first obligation as clouds or something similar. I realized I wouldn't be able to do this because there was such a big contrast between my first obligation and my wake up time. Instead, I added another color to represent when the weekends were to differentiate and highlight the differences in wake up times, which was also my primary predictor variable.
 
 ## b.
+A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories. 
 
 ## c.
 
