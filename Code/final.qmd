@@ -140,16 +140,16 @@ mopl_clean <- mopl |>
   select(used_bin, edgedist, vo_nest)
   
 # model 0: null model
-model0 <- glm(used_bin ~ 1, data = mopl_clean)
+model0 <- glm(used_bin ~ 1, data = mopl_clean, family = binomial)
 
 # model 1: all predictors
-model1 <- glm(used_bin ~ vo_nest + edgedist, data = mopl_clean)
+model1 <- glm(used_bin ~ vo_nest + edgedist, data = mopl_clean, family = binomial)
 
 # model 2: only visual obstruction
-model2 <- glm(used_bin ~ vo_nest, data = mopl_clean)
+model2 <- glm(used_bin ~ vo_nest, data = mopl_clean, family = binomial)
 
 # model 3: only distance to prairie dog colony edge
-model3 <- glm(used_bin ~ edgedist, data = mopl_clean)
+model3 <- glm(used_bin ~ edgedist, data = mopl_clean, family = binomial)
 ```
 
 ## e.
@@ -177,6 +177,38 @@ sim_res <-simulateResiduals(fittedModel = model2)
 ```
 
 ## g.
+```{r}
+model_preds <- ggpredict(
+  model2, 
+  terms = "vo_nest"
+)
+model_preds
+```
+```{r}
+ggplot(data = model2, 
+       aes(x= vo_nest, 
+           y = used_bin)) +
+  geom_point(size = 4, 
+             stroke = 1, 
+             fill = "firebrick", 
+             shape = 21) +
+  geom_ribbon(data = model_preds, 
+              aes(x = x, 
+                  y = predicted, 
+                  ymin = conf.low, 
+                  ymax = conf.high), 
+              alpha = 0.1, 
+              color = "grey") +
+  geom_line(data = model_preds, 
+            aes(x = x, 
+                y = predicted), 
+            linewidth = 1, 
+            color = "blue4") +
+  theme_minimal() +
+  labs(x = "Visual Obstruction",
+       y = "Presence of Prairie Dog Nesting Site")
+```
+
 
 ## h.
 
