@@ -42,14 +42,15 @@ my_data <- read_csv(
 
 ## a.
 
-In part 1, they used a linear regression because they were testing the relationship between a quantitative predictor variable (precipitation) and a quantitative response variable (flooded wetland area). 
-In part 2, because they were testing for the median flooded wetland area difference between more than two groups, they used a Kruskal-Wallis test.
+In part 1, they used a linear regression because they were testing the relationship between a quantitative predictor variable (precipitation) and a quantitative response variable (flooded wetland area). In part 2, because they were testing for the median flooded wetland area difference between two or more groups, they used a Kruskal-Wallis test.
 
 ## b.
 
 A boxplot could be created to highlight the medians and interquartile ranges of the median flooded wetland area across the different water year classifications. On the x-axis would be the different water year classifications and on the y-axis would be the recorded flooded wetland area, including the medians. In addition to the boxplot, the points could be jittered vertically to further show the data.
 
 ## c.
+
+Precipitation was not a statistically significant predictor of flooded wetland area in the San Joaquin River Delta (linear regression, F-statistic(degrees of freedom)= F-statistic, $R^2$ = coefficient of determination, p = 0.11, $\alpha$ = 0.05). The median flooded wetland area did not differ significantly between water year classifications (wet, above normal, below normal, dry, and critical drought) (Kruskal-Wallis: χ²(degrees of freedom) = chi-squared, p =0.12). 
 
 ## d.
 
@@ -125,7 +126,7 @@ The variable for distance to prairie dog colony edge is a continuous variable. T
 ## c.
 
 | Model number | Distance to prairie dog colony edge | Visual obstruction | Predictors |
-|----------------|:--------------:|:--------------:|:----------------------:|
+|-----------------|:---------------:|:---------------:|:--------------------:|
 | 0 |  |  | no predictors (null model) |
 | 1 | X | X | all predictors (full model) |
 | 2 |  | X | only visual obstruction |
@@ -250,7 +251,7 @@ ggplot(data = my_data_clean,
   facet_wrap(~ school_day_yes_no)
 ```
 
-The distribution does not appear to be normally distributed, but the central limit theorem applies (n>30), so the normality conditions can be relaxed.
+The distribution does not appear to be normally distributed, but the central limit theorem applies (n\>30), so the normality conditions can be relaxed.
 
 F test of Equal Variances:
 
