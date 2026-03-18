@@ -65,10 +65,8 @@ Delta outflow, which is a continuous and quantitative variable, could have influ
 kelp_clean <- kelp |> 
   # function 3
 clean_names() |>  #removes underscores and capital letters
-  
   # function 6
 filter(site %in% c("IVEE", "NAPL", "CARP")) |>  #filtering by three sites
-  
   # function 8
 mutate(site = case_when( #changing site names
   site == "NAPL" ~ "Naples", #changing site NAPL to Naples
