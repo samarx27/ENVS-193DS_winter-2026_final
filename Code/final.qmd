@@ -234,7 +234,7 @@ predict_prob_vo0 #displaying output
 
 ## j.
 
-Figure 1. shows the predicted probability of occupancy of Mountain Plover nest site decreased when visual obstruction increased. The predicted probability of the nest site occupancy at 0, where there was no visual obstruction, was 0.73. This indicates that the probability of occupancy when there was no obstruction was relatively high. This pattern is consistent with what is known about Mountain Plover preferred nesting sites, as they tend to prefer flat, open nesting grounds.
+
 
 # Problem 4. Affective and Exploratory Visualizations
 
@@ -333,7 +333,7 @@ ggplot(data = my_data_summary, # use the summary data frame
 
 ## e.
 
-**Figure 1.** This figure shows the mean, standard error, and underlying data of wake up times for school and non-school days, where school days are in blue and non-school days are in red. The mean is represented by the large points and the standard error is represented by the bars. The jittered points represent the underlying data.
+
 
 ## f.
 
