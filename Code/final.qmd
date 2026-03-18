@@ -133,7 +133,7 @@ The variable for distance to prairie dog colony edge is a continuous variable. T
 ## c.
 
 | Model number | Distance to prairie dog colony edge | Visual obstruction | Predictors |
-|----|:--:|:--:|:--:|
+|-----------------|:---------------:|:---------------:|:-------------------:|
 | 0 |  |  | no predictors (null model) |
 | 1 | X | X | all predictors (full model) |
 | 2 |  | X | only visual obstruction |
@@ -256,12 +256,12 @@ Normal Distribution:
 
 ```{r}
 my_data_clean <- my_data |> 
-  clean_names()
-ggplot(data = my_data_clean, 
-       aes(sample = wake_up_time_hrs_min)) + 
-  geom_qq() +
-  geom_qq_line() +
-  facet_wrap(~ school_day_yes_no)
+  clean_names() #cleaned names
+ggplot(data = my_data_clean, #creating new data frame
+       aes(sample = wake_up_time_hrs_min)) + #using the sample from the data frame
+  geom_qq() + #adding qq points 
+  geom_qq_line() + #adding qq line
+  facet_wrap(~ school_day_yes_no) #adding it based on the two cateogories 
 ```
 
 The distribution does not appear to be normally distributed, but the central limit theorem applies (n\>30), so the normality conditions can be relaxed.
