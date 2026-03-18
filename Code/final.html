@@ -179,7 +179,7 @@ window.Quarto = {
 <h1>Problem 1. San Joaquin River Delta</h1>
 <section id="a." class="level2">
 <h2 class="anchored" data-anchor-id="a.">a.</h2>
-<p>In part 1, they used a linear regression because they were testing the relationship between a quantitative predictor variable (precipitation) and a quantitative response variable (flooded wetland area). In part 2, because they were testing for the median flooded wetland area difference between two or more groups, they used a Kruskal-Wallis test.</p>
+<p>In Part 1, they used a linear regression because they were testing the relationship between a quantitative predictor variable (precipitation) and a quantitative response variable (flooded wetland area). In Part 2, because they were testing for the median flooded wetland area difference between two or more groups, they used a Kruskal-Wallis test.</p>
 </section>
 <section id="b." class="level2">
 <h2 class="anchored" data-anchor-id="b.">b.</h2>
@@ -202,27 +202,25 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kelp_clean <span class="ot">&lt;-</span> kelp <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 3</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_names</span>() <span class="sc">|&gt;</span>  <span class="co">#removes underscores and capital letters</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 6</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(site <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"IVEE"</span>, <span class="st">"NAPL"</span>, <span class="st">"CARP"</span>)) <span class="sc">|&gt;</span>  <span class="co">#filtering by three sites</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 8</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">site =</span> <span class="fu">case_when</span>( <span class="co">#changing site names</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  site <span class="sc">==</span> <span class="st">"NAPL"</span> <span class="sc">~</span> <span class="st">"Naples"</span>, <span class="co">#changing site NAPL to Naples</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  site <span class="sc">==</span> <span class="st">"IVEE"</span> <span class="sc">~</span> <span class="st">"Isla Vista"</span>, <span class="co">#changing site IVEE to Isla Vista</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  site <span class="sc">==</span> <span class="st">"CARP"</span> <span class="sc">~</span> <span class="st">"Carpinteria"</span>)) <span class="sc">|&gt;</span> <span class="co">#changing site CARP to Capinteria </span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 2</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">site =</span> <span class="fu">as_factor</span>(site), <span class="co">#converts the site name to a categorical variable</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">site =</span> <span class="fu">fct_relevel</span>(site,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Naples"</span>, <span class="st">"Isla Vista"</span>, <span class="st">"Carpinteria"</span>)) <span class="sc">|&gt;</span> <span class="co">#changes the order of factor levels</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 1</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="sc">!</span>(date <span class="sc">==</span> <span class="st">"2000-09-22"</span> <span class="sc">&amp;</span> transect <span class="sc">==</span> <span class="st">"6"</span> <span class="sc">&amp;</span> quad <span class="sc">==</span> <span class="st">"40"</span>))<span class="sc">|&gt;</span> <span class="co">#filtering by the date, transect, and quad number</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function 5</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(site, year) <span class="sc">|&gt;</span> <span class="co">#grouping by site name and year</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function 7</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">mean_fronds =</span> <span class="fu">mean</span>(fronds)) <span class="sc">|&gt;</span>  <span class="co">#creating a column for the mean </span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function 4</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>()   <span class="co">#ungrouping any prior groupings</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 6</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(site <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"IVEE"</span>, <span class="st">"NAPL"</span>, <span class="st">"CARP"</span>)) <span class="sc">|&gt;</span>  <span class="co">#filtering by three sites</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 8</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">site =</span> <span class="fu">case_when</span>( <span class="co">#changing site names</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  site <span class="sc">==</span> <span class="st">"NAPL"</span> <span class="sc">~</span> <span class="st">"Naples"</span>, <span class="co">#changing site NAPL to Naples</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  site <span class="sc">==</span> <span class="st">"IVEE"</span> <span class="sc">~</span> <span class="st">"Isla Vista"</span>, <span class="co">#changing site IVEE to Isla Vista</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  site <span class="sc">==</span> <span class="st">"CARP"</span> <span class="sc">~</span> <span class="st">"Carpinteria"</span>)) <span class="sc">|&gt;</span> <span class="co">#changing site CARP to Capinteria </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 2</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">site =</span> <span class="fu">as_factor</span>(site), <span class="co">#converts the site name to a categorical variable</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">site =</span> <span class="fu">fct_relevel</span>(site,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Naples"</span>, <span class="st">"Isla Vista"</span>, <span class="st">"Carpinteria"</span>)) <span class="sc">|&gt;</span> <span class="co">#changes the order of factor levels</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># function 1</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="sc">!</span>(date <span class="sc">==</span> <span class="st">"2000-09-22"</span> <span class="sc">&amp;</span> transect <span class="sc">==</span> <span class="st">"6"</span> <span class="sc">&amp;</span> quad <span class="sc">==</span> <span class="st">"40"</span>))<span class="sc">|&gt;</span> <span class="co">#filtering by the date, transect, and quad number</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function 5</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(site, year) <span class="sc">|&gt;</span> <span class="co">#grouping by site name and year</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function 7</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">mean_fronds =</span> <span class="fu">mean</span>(fronds)) <span class="sc">|&gt;</span>  <span class="co">#creating a column for the mean </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function 4</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>()   <span class="co">#ungrouping any prior groupings</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has regrouped the output.
 ℹ Summaries were computed grouped by site and year.
@@ -237,11 +235,11 @@ window.Quarto = {
 <pre><code># A tibble: 5 × 3
   site         year mean_fronds
   &lt;fct&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-1 Naples       2008        6.62
-2 Carpinteria  2003        5.27
-3 Carpinteria  2016        4.97
-4 Isla Vista   2013        9.36
-5 Naples       2025        8.44</code></pre>
+1 Carpinteria  2004        3.67
+2 Isla Vista   2001        6.5 
+3 Isla Vista   2003        6.14
+4 Naples       2018       17.7 
+5 Isla Vista   2023        3.78</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kelp_clean) <span class="co">#inspecting the structure of kelp_clean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -302,10 +300,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="c.-2">c.</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 29%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -469,7 +467,7 @@ Not all rows are shown in the output. Use `print(..., n = Inf)` to show
 </section>
 <section id="j." class="level2">
 <h2 class="anchored" data-anchor-id="j.">j.</h2>
-<p>Figure 1. shows the predicted probability of occupancy of Mountain Plover nest site decreased when visual obstruction increased. The predicted probability of the nest site occupancy at 0, where there was no visual obstruction, was 0.73. This indicates that the probability of occupancy when there was no obstruction was relatively high. This pattern is consistent with what is known about Mountain Plover preferred nesting sites, as they tend to prefer flat, open nesting grounds.</p>
+<p><strong>Figure 1.</strong> shows the predicted probability of occupancy of Mountain Plover nest site decreased when visual obstruction increased. The predicted probability of the nest site occupancy at 0, where there was no visual obstruction, was 0.73. This indicates that the probability of occupancy when there was no obstruction was relatively high. This pattern is consistent with what is known about Mountain Plover preferred nesting sites, as they tend to prefer flat, open nesting grounds.</p>
 </section>
 </section>
 <section id="problem-4.-affective-and-exploratory-visualizations" class="level1">
@@ -489,12 +487,12 @@ Not all rows are shown in the output. Use `print(..., n = Inf)` to show
 <p>Normal Distribution:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_data_clean <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data_clean, </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">sample =</span> wake_up_time_hrs_min)) <span class="sc">+</span> </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> school_day_yes_no)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="co">#cleaned names</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data_clean, <span class="co">#creating new data frame</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">sample =</span> wake_up_time_hrs_min)) <span class="sc">+</span> <span class="co">#using the sample from the data frame</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span> <span class="co">#adding qq points </span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>() <span class="sc">+</span> <span class="co">#adding qq line</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> school_day_yes_no) <span class="co">#adding it based on the two cateogories </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -621,7 +619,7 @@ Time differences in secs
 </section>
 <section id="g.-1" class="level2">
 <h2 class="anchored" data-anchor-id="g.-1">g.</h2>
-<p>I completed the activity in section.</p>
+<p>I completed the activity in section this week.</p>
 </section>
 </section>
 
