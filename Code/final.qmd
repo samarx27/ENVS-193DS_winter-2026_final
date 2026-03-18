@@ -43,7 +43,7 @@ my_data <- read_csv(
 
 ## a.
 
-In part 1, they used a linear regression because they were testing the relationship between a quantitative predictor variable (precipitation) and a quantitative response variable (flooded wetland area). In part 2, because they were testing for the median flooded wetland area difference between two or more groups, they used a Kruskal-Wallis test.
+In Part 1, they used a linear regression because they were testing the relationship between a quantitative predictor variable (precipitation) and a quantitative response variable (flooded wetland area). In Part 2, because they were testing for the median flooded wetland area difference between two or more groups, they used a Kruskal-Wallis test.
 
 ## b.
 
