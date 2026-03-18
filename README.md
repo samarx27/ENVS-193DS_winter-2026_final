@@ -10,4 +10,4 @@ What files are there? All code files are under the code folder, these are .qmd f
 
 What code is there, and what does it do? The files include code for creating different model and checking the conditions of data sets.
 
-Link to the repository here
+Link to the repository [here](https://github.com/samarx27/ENVS-193DS_winter-2026_final.git)
