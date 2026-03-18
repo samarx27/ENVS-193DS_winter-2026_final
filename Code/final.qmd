@@ -53,6 +53,7 @@ A boxplot could be created to highlight the medians and interquartile ranges of 
 Precipitation was not a statistically significant predictor of flooded wetland area in the San Joaquin River Delta (linear regression, F-statistic(degrees of freedom)= F-statistic, $R^2$ = coefficient of determination, p = 0.11, $\alpha$ = 0.05). The median flooded wetland area did not differ significantly between water year classifications (wet, above normal, below normal, dry, and critical drought) (Kruskal-Wallis: χ²(degrees of freedom) = chi-squared, p =0.12). 
 
 ## d.
+Delta outflow, which is a continous and quantitative variable, could have influenced the flooded area of the wetland. This could impact the flooded area of the wetland depending on how much water is flowing into the delta after a rain event.  
 
 # Problem 2. Data Visualization
 
