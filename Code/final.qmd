@@ -51,10 +51,11 @@ A boxplot could be created to highlight the medians and interquartile ranges of 
 
 ## c.
 
-Precipitation was not a statistically significant predictor of flooded wetland area in the San Joaquin River Delta (linear regression, F-statistic(degrees of freedom)= F-statistic, $R^2$ = coefficient of determination, p = 0.11, $\alpha$ = 0.05). The median flooded wetland area did not differ significantly between water year classifications (wet, above normal, below normal, dry, and critical drought) (Kruskal-Wallis: χ²(degrees of freedom) = chi-squared, p =0.12). 
+Precipitation was not a statistically significant predictor of flooded wetland area in the San Joaquin River Delta (linear regression, F-statistic(degrees of freedom)= F-statistic, $R^2$ = coefficient of determination, p = 0.11, $\alpha$ = 0.05). The median flooded wetland area did not differ significantly between water year classifications (wet, above normal, below normal, dry, and critical drought) (Kruskal-Wallis: χ²(degrees of freedom) = chi-squared, p =0.12).
 
 ## d.
-Delta outflow, which is a continuous and quantitative variable, could have influenced the flooded area of the wetland. This could impact the flooded area of the wetland because it can alter the amount of water that will remain in the wetland depending on how much water is flowing into the delta and out of the wetland after a rain event.  
+
+Delta outflow, which is a continuous and quantitative variable, could have influenced the flooded area of the wetland. This could impact the flooded area of the wetland because it can alter the amount of water that will remain in the wetland depending on how much water is flowing into the delta and out of the wetland after a rain event.
 
 # Problem 2. Data Visualization
 
@@ -92,7 +93,8 @@ str(kelp_clean) #inspecting the structure of kelp_clean
 ```
 
 ## b.
-The number of fronds in that "quad" in that "transect" is -9999. This value represents the data sheet either being lost or the data was not collected for a particular species, which I found in the Methods and Protocols section of the data page. 
+
+The number of fronds in that "quad" in that "transect" is -9999. This value represents the data sheet either being lost or the data was not collected for a particular species, which I found in the Methods and Protocols section of the data page.
 
 ## c.
 
@@ -131,7 +133,7 @@ The variable for distance to prairie dog colony edge is a continuous variable. T
 ## c.
 
 | Model number | Distance to prairie dog colony edge | Visual obstruction | Predictors |
-|-----------------|:---------------:|:---------------:|:--------------------:|
+|----|:--:|:--:|:--:|
 | 0 |  |  | no predictors (null model) |
 | 1 | X | X | all predictors (full model) |
 | 2 |  | X | only visual obstruction |
@@ -175,7 +177,7 @@ AICc( #running the AICc for each of the models
   arrange(AICc) #arranging AICcs from lowest to highest 
 ```
 
-The best model as determined by Akaike's Information Criterion (AIC) was the model with only visual obstruction. 
+The best model as determined by Akaike's Information Criterion (AIC) was the model with only visual obstruction.
 
 ## f.
 
@@ -219,9 +221,11 @@ ggplot(data = model2, #using model2 data frame
 ```
 
 ## h.
-**Figure 1.** This figure shows the linear regression model of Mountain Plover nest site occupancy for site that had only visual obstruction. The red points show the observed data, where 0 is absence of nesting sites and 1 is the presence. The blue line shows the fitted regression and the gray lines show the 95% confidence intervals around the predictions. This figure shows the prevalence of pairie dog nesting sites decreased as visual obstruction increased. Reproduced from Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. https://doi.org/10.5061/dryad.ttdz08kt7
 
-## i. 
+**Figure 1.** This figure shows the linear regression model of Mountain Plover nest site occupancy for site that had only visual obstruction. The red points show the observed data, where 0 is absence of nesting sites and 1 is the presence. The blue line shows the fitted regression and the gray lines show the 95% confidence intervals around the predictions. This figure shows the prevalence of pairie dog nesting sites decreased as visual obstruction increased. Reproduced from Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance \[Dataset\]. Dryad. https://doi.org/10.5061/dryad.ttdz08kt7
+
+## i.
+
 ```{r}
 vo_data <- data.frame(vo_nest = 0)
 predict_prob_vo0 <- predict(model2, # using model2 
@@ -230,8 +234,8 @@ predict_prob_vo0 <- predict(model2, # using model2
 predict_prob_vo0 #displaying output
 ```
 
-
 ## j.
+
 Figure 1. shows the predicted probability of occupancy of Mountain Plover nest site decreased when visual obstruction increased. The predicted probability of the nest site occupancy at 0, where there was no visual obstruction, was 0.73. This indicates that the probability of occupancy when there was no obstruction was relatively high. This pattern is consistent with what is known about Mountain Plover preferred nesting sites, as they tend to prefer flat, open nesting grounds.
 
 # Problem 4. Affective and Exploratory Visualizations
@@ -242,11 +246,11 @@ The visualizations from Homework 2 and Homework 3 are similar in the overall out
 
 ## b.
 
-A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories. 
+A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories.
 
 ## c.
 
-# Checking Assumptions
+### Checking Assumptions
 
 Normal Distribution:
 
@@ -274,7 +278,7 @@ var.test(
 
 The group variances were equal (F-test of equal variances, F(11,23) = 2.11, p = 0.13).
 
-# Running t-test and Calculating effect size
+### Running t-test and Calculating effect size
 
 ```{r}
 t.test(

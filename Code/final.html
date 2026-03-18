@@ -237,11 +237,11 @@ window.Quarto = {
 <pre><code># A tibble: 5 × 3
   site         year mean_fronds
   &lt;fct&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-1 Carpinteria  2017       13.4 
-2 Carpinteria  2014        7.26
-3 Carpinteria  2021        6.13
-4 Carpinteria  2010        3.53
-5 Isla Vista   2022       38.3 </code></pre>
+1 Naples       2008        6.62
+2 Carpinteria  2003        5.27
+3 Carpinteria  2016        4.97
+4 Isla Vista   2013        9.36
+5 Naples       2025        8.44</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kelp_clean) <span class="co">#inspecting the structure of kelp_clean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -302,10 +302,10 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="c.-2">c.</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -484,10 +484,8 @@ Not all rows are shown in the output. Use `print(..., n = Inf)` to show
 </section>
 <section id="c.-3" class="level2">
 <h2 class="anchored" data-anchor-id="c.-3">c.</h2>
-</section>
-</section>
-<section id="checking-assumptions" class="level1">
-<h1>Checking Assumptions</h1>
+<section id="checking-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="checking-assumptions">Checking Assumptions</h3>
 <p>Normal Distribution:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_data_clean <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span> </span>
@@ -529,8 +527,8 @@ ratio of variances
 </div>
 <p>The group variances were equal (F-test of equal variances, F(11,23) = 2.11, p = 0.13).</p>
 </section>
-<section id="running-t-test-and-calculating-effect-size" class="level1">
-<h1>Running t-test and Calculating effect size</h1>
+<section id="running-t-test-and-calculating-effect-size" class="level3">
+<h3 class="anchored" data-anchor-id="running-t-test-and-calculating-effect-size">Running t-test and Calculating effect size</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  wake_up_time_hrs_min <span class="sc">~</span> school_day_yes_no, <span class="co">#formula: response variable ~ grouping variable</span></span>
@@ -567,6 +565,8 @@ Time differences in secs
 - Estimated using pooled SD.</code></pre>
 </div>
 </div>
+</section>
+</section>
 <section id="d.-3" class="level2">
 <h2 class="anchored" data-anchor-id="d.-3">d.</h2>
 <div class="cell">
