@@ -19,6 +19,7 @@ library(MuMIn) #loading in MuMIn
 library(DHARMa) #loading in DHARMa
 library(effectsize) #loading in effectsize
 library(dplyr) #loading in dplyr
+#reading in all data using here function to tell r where the data is located 
 kelp <- read_csv(
   here(
     "Data", 
@@ -53,7 +54,7 @@ A boxplot could be created to highlight the medians and interquartile ranges of 
 Precipitation was not a statistically significant predictor of flooded wetland area in the San Joaquin River Delta (linear regression, F-statistic(degrees of freedom)= F-statistic, $R^2$ = coefficient of determination, p = 0.11, $\alpha$ = 0.05). The median flooded wetland area did not differ significantly between water year classifications (wet, above normal, below normal, dry, and critical drought) (Kruskal-Wallis: χ²(degrees of freedom) = chi-squared, p =0.12). 
 
 ## d.
-Delta outflow, which is a continous and quantitative variable, could have influenced the flooded area of the wetland. This could impact the flooded area of the wetland because it can alter the amount of water that will remain in the wetland depending on how much water is flowing into the delta and out of the wetland after a rain event.  
+Delta outflow, which is a continuous and quantitative variable, could have influenced the flooded area of the wetland. This could impact the flooded area of the wetland because it can alter the amount of water that will remain in the wetland depending on how much water is flowing into the delta and out of the wetland after a rain event.  
 
 # Problem 2. Data Visualization
 
@@ -72,7 +73,6 @@ mutate(site = case_when( #changing site names
   site == "NAPL" ~ "Naples", #changing site NAPL to Naples
   site == "IVEE" ~ "Isla Vista", #changing site IVEE to Isla Vista
   site == "CARP" ~ "Carpinteria")) |> #changing site CARP to Capinteria 
-
   # function 2
 mutate(site = as_factor(site), #converts the site name to a categorical variable
        site = fct_relevel(site,
@@ -86,6 +86,9 @@ summarize(mean_fronds = mean(fronds)) |>  #creating a column for the mean
     # function 4
 ungroup()   #ungrouping any prior groupings
 
+slice_sample(kelp_clean, #taking a sample of kelp_clean
+             n = 5) #displaying 5 random rows
+str(kelp_clean) #inspecting the structure of kelp_clean
 ```
 
 ## b.
@@ -123,7 +126,7 @@ The 1s and 0s represent whether the site was used for nesting by Mountain Plover
 
 ## b.
 
-The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because it increases the vulnerability of the nesting site due to altered vegetation composition, which is included in the methods and discussion section of the paper. The variable for visual obstruction is a continuous variable. It could influence the probability of Mountain Plover nest site use because it can impact the visibility of the nest to predators, which is included in discussion section of the paper.
+The variable for distance to prairie dog colony edge is a continuous variable. This could influence the probability of Mountain Plover nest site use because they help create their desired nesting sites by disturbing soil and reducing vegetation, which is included in the introduction section of the paper. The variable for visual obstruction is a continuous variable. It could influence the probability of Mountain Plover nest site use because it can deter Plovers from nesting in an area that has too much dense vegetation, which is included in introduction section of the paper.
 
 ## c.
 
@@ -140,12 +143,12 @@ The variable for distance to prairie dog colony edge is a continuous variable. T
 #| message: false
 #| warning: false
 #| include: false
-mopl_clean <- mopl |> 
-  clean_names() |> 
+mopl_clean <- mopl |> #creating new data frame 
+  clean_names() |> #cleaning the names 
   mutate(used_bin = case_when(
-    id == "used" ~ 1,
-    id == "available" ~ 0)) |> 
-  select(used_bin, edgedist, vo_nest)
+    id == "used" ~ 1, #changing the used variable to a 1 
+    id == "available" ~ 0)) |> #changing the available variable to zero
+  select(used_bin, edgedist, vo_nest) #selecting three columns
   
 # model 0: null model
 model0 <- glm(used_bin ~ 1, data = mopl_clean, family = binomial)
@@ -163,13 +166,13 @@ model3 <- glm(used_bin ~ edgedist, data = mopl_clean, family = binomial)
 ## e.
 
 ```{r}
-AICc(
+AICc( #running the AICc for each of the models 
   model0,
   model1, 
   model2, 
   model3
 ) |> 
-  arrange(AICc)
+  arrange(AICc) #arranging AICcs from lowest to highest 
 ```
 
 The best model as determined by Akaike's Information Criterion (AIC) was the model with only visual obstruction. 
@@ -177,56 +180,59 @@ The best model as determined by Akaike's Information Criterion (AIC) was the mod
 ## f.
 
 ```{r}
-#| fig-height: 6
-#| fig-width: 7
-sim_res <-simulateResiduals(fittedModel = model2)
-  plot(sim_res)  
-  testDispersion(sim_res)
-  testZeroInflation(sim_res)
-  testOutliers(sim_res)
+sim_res <-simulateResiduals(fittedModel = model2) #creating simulated residuals
+  plot(sim_res)  #plotting simulated residuals
 ```
 
 ## g.
 
 ```{r}
-model_preds <- ggpredict(
-  model2, 
-  terms = "vo_nest"
+model_preds <- ggpredict( #estimating from regression model
+  model2, #using model 2 
+  terms = "vo_nest" #with the visual obstruction variable
 )
-model_preds
+model_preds #displaying output
 ```
 
 ```{r}
-ggplot(data = model2, 
-       aes(x= vo_nest, 
-           y = used_bin)) +
-  geom_point(size = 4, 
-             stroke = 1, 
-             fill = "firebrick", 
-             shape = 21) +
-  geom_ribbon(data = model_preds, 
-              aes(x = x, 
-                  y = predicted, 
-                  ymin = conf.low, 
-                  ymax = conf.high), 
-              alpha = 0.1, 
-              color = "grey") +
-  geom_line(data = model_preds, 
-            aes(x = x, 
-                y = predicted), 
-            linewidth = 1, 
-            color = "blue4") +
-  theme_classic() +
-  labs(x = "Visual Obstruction",
-       y = "Presence of Prairie Dog Nesting Site")
+ggplot(data = model2, #using model2 data frame
+       aes(x= vo_nest, #labeling x axis
+           y = used_bin)) + #labeling y axis
+  geom_point(size = 4, #changing size of point
+             fill = "firebrick", #filling the point with red
+             shape = 21) + #changing the shape to be filled circles
+  geom_ribbon(data = model_preds, #creating CI
+              aes(x = x, #using x as x axis
+                  y = predicted, #determining y is predicted output
+                  ymin = conf.low, #ymin is the lower bound of CI
+                  ymax = conf.high), #ymax is the higher bound of CI
+              alpha = 0.1, #changing transparency
+              color = "grey") + #making color gray
+  geom_line(data = model_preds, #creating line based on model prediction data
+            aes(x = x,  #using x as x axis
+                y = predicted), #determining y is predicted output
+            linewidth = 1, #changing width of line
+            color = "blue4") + #changing line color
+  theme_classic() + #removing gridlines
+  labs(x = "Visual Obstruction", #labeling x axis
+       y = "Presence of Prairie Dog Nesting Site") #labeling y axis 
 ```
 
 ## h.
 **Figure 1.** This figure shows the linear regression model of Mountain Plover nest site occupancy for site that had only visual obstruction. The red points show the observed data, where 0 is absence of nesting sites and 1 is the presence. The blue line shows the fitted regression and the gray lines show the 95% confidence intervals around the predictions. This figure shows the prevalence of pairie dog nesting sites decreased as visual obstruction increased. Reproduced from Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. https://doi.org/10.5061/dryad.ttdz08kt7
 
 ## i. 
+```{r}
+vo_data <- data.frame(vo_nest = 0)
+predict_prob_vo0 <- predict(model2, # using model2 
+                            newdata = vo_data, #making it based on vo_data
+                            type = "response") #labeling variable type
+predict_prob_vo0 #displaying output
+```
+
 
 ## j.
+Figure 1. shows the predicted probability of occupancy of Mountain Plover nest site decreased when visual obstruction increased. The predicted probability of the nest site occupancy at 0, where there was no visual obstruction, was 0.73. This indicates that the probability of occupancy when there was no obstruction was relatively high. This pattern is consistent with what is known about Mountain Plover preferred nesting sites, as they tend to prefer flat, open nesting grounds.
 
 # Problem 4. Affective and Exploratory Visualizations
 
@@ -236,7 +242,7 @@ The visualizations from Homework 2 and Homework 3 are similar in the overall out
 
 ## b.
 
-A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories.
+A two-sample t-test is one analysis that could be applied to my initial research question of: "Does the time I wake up differ between school days and non-school days?" This test is appropriate to my question because it is comparing two separate groups and a two-sample t-test compares the means of two separate groups. My response variable, which is my wake up time, is quantitative and my predictor variable, which is whether or not it is a school day, is categorical with two categories. 
 
 ## c.
 
@@ -331,6 +337,6 @@ ggplot(data = my_data_summary, # use the summary data frame
 
 There was a significant difference in mean wake up time between school (n=35) and non school days (n=16) with a large effect size (Student's two sample t-test, t(5.8279) = 49, p\<0.001, $\alpha$ = 0.05, Cohen's d = 1.76).
 
-## g.s
+## g.
 
 I completed the activity in section.
