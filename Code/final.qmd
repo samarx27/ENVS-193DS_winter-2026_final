@@ -233,8 +233,7 @@ predict_prob_vo0 #displaying output
 ```
 
 ## j.
-
-
+**Figure 1.** shows the predicted probability of occupancy of Mountain Plover nest site decreased when visual obstruction increased. The predicted probability of the nest site occupancy at 0, where there was no visual obstruction, was 0.73. This indicates that the probability of occupancy when there was no obstruction was relatively high. This pattern is consistent with what is known about Mountain Plover preferred nesting sites, as they tend to prefer flat, open nesting grounds.
 
 # Problem 4. Affective and Exploratory Visualizations
 
